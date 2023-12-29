@@ -1,2 +1,2 @@
 # SQL_Queries
-Sql_query_1 is group_concat query
+query_1.sql is group_concat query
