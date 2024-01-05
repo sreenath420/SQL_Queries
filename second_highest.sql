@@ -1,3 +1,6 @@
+--find the highest salary
+--dense_rank() This function returns the rank of each row , with no gaps in the ranking values. The rank of a specific row is one plus the number of distinct rank values that come before that specific row
+
 create table employees(
 id int,
 name varchar(30),
