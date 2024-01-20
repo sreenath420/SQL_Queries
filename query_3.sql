@@ -6,7 +6,7 @@ cust_id  flight_id  origin  destination
 --------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------
 1	     Flight1	Delhi	Hyderabad
-1		 Flight2	Hyderabad	Kochi
+1		    Flight2	Hyderabad	Kochi
 1	     Flight3	Kochi	Mangalore
 2	     Flight1	Mumbai	Ayodhya
 2	     Flight2	Ayodhya	Gorakhpur
@@ -18,7 +18,7 @@ cust_id    origin   destination
 -------------------------------------------
 ------------------------------------------
 1	       Delhi    Mangalore
-2	       Mumbai	Gorakhpur
+2	       Mumbai	  Gorakhpur
 
 
 
