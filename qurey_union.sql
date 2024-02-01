@@ -38,7 +38,7 @@ insert into city_names values
 (2,'y','bang','mum');
  
  
-Queries 
+Querie
 
 select id,name,add1
 from city_names
