@@ -1,9 +1,6 @@
-
-
 input
-
+--------------------------------------------------------------------------
 name        opt_in
-
 john         true
 john         false
 john         false
@@ -15,9 +12,8 @@ kek          true
 
 
 output
-
+------------------------------------------------------------------
 name     opt_in
-
 john     false
 kek      true
 
