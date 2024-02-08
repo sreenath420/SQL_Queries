@@ -18,7 +18,8 @@ john     false
 kek      true
 
 
-select name,opt_in from (
+select name,opt_in 
+from (
 select name,
 opt_in,
 row_number()over(partition by name order by opt_in) as rnk
