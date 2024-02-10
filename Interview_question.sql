@@ -29,6 +29,7 @@ Group by e_name,e_address,e_age
 5.wirte query to fetch only present one time in given values
 select name,count(name) from city11 group by name having count(name)=1
 
+#write a query to find latest city visited customer
 6.select id,name,location,date
 from customer_location loc
 inner join (
