@@ -75,3 +75,41 @@ rank() over(partition by accno order by transaction_time desc) as rk
 from tran_table) a
 where rk=1
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+QUERY 3 ->In From Clause
+Input-
+employee_id  leave_date   leave_type
+1			 2022-01-10	   Sick
+1			 2022-01-12	   Personal
+1			 2022-01-15	   Sick
+2			 2022-01-11	   Vacation
+2			 2022-01-13	   Sick
+2			 2022-01-14	   Vacation
+
+output
+employee_id			      leave_type
+  1					           Sick
+  2					           Vacation
+  
+  
+create table employee_sick
+(
+employee_id int,
+leave_date date,
+leave_type varchar(30)
+);
+
+insert into employee_sick values
+(1,'2022-01-10','Sick'),
+(1,'2022-01-12','Personal'),
+(1,'2022-01-15','Sick'),
+(2,'2022-01-11','Vacation'),
+(2,'2022-01-13','Sick'),
+(2,'2022-01-04','Vacation');
+
+select employee_id,leave_type
+from(
+select employee_id,leave_type,count(leave_type) as leave_ty
+from employee_sick 
+group by employee_id,leave_type) as tem
+where leave_ty=2
