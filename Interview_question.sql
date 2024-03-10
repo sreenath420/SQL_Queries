@@ -35,4 +35,26 @@ from customer_location loc
 inner join (
 select id as lid,max(date) from customer_location 
 group by id) lat on loc.id=lat.lid and location='hyd'
+7. write a query sql convert first letter caps and lower letter
+ename
+aLEn
+kaThY
+EleNa
+vArUn
 
+Alen
+Varun
+Kathy
+
+create table tab1(
+ename varchar(30)
+);
+
+insert into tab1 values('aLEn'),
+('kaThY'),
+('EleNa'),
+('vArun');
+
+
+SELECT CONCAT(UPPER(SUBSTRING(ename, 1,1)) , LOWER(SUBSTRING(ename, 2))) AS capit
+FROM tab1;
