@@ -58,3 +58,9 @@ insert into tab1 values('aLEn'),
 
 SELECT CONCAT(UPPER(SUBSTRING(ename, 1,1)) , LOWER(SUBSTRING(ename, 2))) AS capit
 FROM tab1;
+capit
+Alen
+Kathy
+Elena
+Varun
+
