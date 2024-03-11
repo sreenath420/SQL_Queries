@@ -113,3 +113,24 @@ select employee_id,leave_type,count(leave_type) as leave_ty
 from employee_sick 
 group by employee_id,leave_type) as tem
 where leave_ty=2
+
+1. Write a query to display all the orders from the orders table issued by the salesman 'Paul Adam'. */
+ANS->SELECT ord_no, purch_amt, ord_date, customer_id, salesman_id 
+FROM ORDERS where salesman_ID IN 
+(SELECT salesman_ID  FROM SALESMAN WHERE name='Paul Adam')
+* 2. Write a query to display all the orders for the salesman who belongs to the city London. *.'
+SELECT ord_no, purch_amt, ord_date, customer_id, salesman_id 
+FROM ORDERS where salesman_ID IN 
+(SELECT salesman_ID  FROM SALESMAN WHERE city='LONDON')
+* 3. Write a query to find all the orders issued against the salesman who may works for customer whose id is 3007. *.4
+
+
+* 4. Write a query to display all the orders which values are greater than the average order value for 10th October 2012. /*
+SELECT ord_no, purch_amt, ord_date, customer_id, salesman_id 
+FROM ORDERS WHERE purch_amt >
+(select avg(purch_amt) from ORDERS
+WHERE ord_date='2012-10-10');
+/* 5. Write a query to find all orders attributed to a salesman in New York. */
+SELECT ord_no, purch_amt, ord_date, customer_id, salesman_id 
+FROM ORDERS where salesman_ID IN 
+(SELECT salesman_ID  FROM SALESMAN WHERE city='New York')
