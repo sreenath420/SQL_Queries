@@ -64,4 +64,23 @@ Alen
 Kathy
 Elena
 Varun
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+input
+empid 	empname 		 esalary
+1		    sharan			  100
+2		    sreenath			100
+3		    ujjwala			  200
+  
+output
+empid 	empname esalary   cum
+1	      sharan	100	      100
+2	      sharan	100	      200
+3	      sharan	200	      400
+
+select empid,
+  emp_name,
+  salary, 
+  sum(salary) over(order by empid)
+  from emp111
+
 
