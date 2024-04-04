@@ -70,8 +70,8 @@ user_id	  device_type		view_time
 
 Example Output
 ---------------------------------------
-laptop_views	mobile_views
-2					        3
+laptop_views	      mobile_views
+  2					              3
 
 SELECT sum(case WHEN device_type='laptop' THEN 1 else 0 end) as laptop_views,
 sum(case WHEN device_type in('tablet','phone') THEN 1 else 0 end) as mobile_views
