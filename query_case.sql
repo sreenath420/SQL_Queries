@@ -79,3 +79,49 @@ SELECT sum(case WHEN device_type='laptop' THEN 1 else 0 end) as laptop_views,
 sum(case WHEN device_type in('tablet','phone') THEN 1 else 0 end) as mobile_views
 FROM viewership
 
+------------------------------------------------------------------------------------------------
+question-
+1.SUPPOSE YOU HAVE THE GIVEN DATAFRAME OR TABLE GET THE RESULTANT OUTPUT.
+2. YEAR WISE SUM OF TOTAL QUANTITY WHERE YEARS WILL COME IN COLUMNS FOR EACH
+
+Create table product(
+id int,
+product varchar(10),
+salesyear int,
+QuantitySold int
+);
+INSERT INTO product (id,product,salesyear,QuantitySold)
+VALUES (1, 'Laptop', '1998', '2500'),
+       (2, 'Laptop', '1999', '3600'),
+       (3, 'Laptop', '2000', '4200'),
+       (4, 'Keyboard', '1998', '2300'),
+       (5, 'Keyboard', '1999', '3600'),
+       (6, 'Keyboard', '2000', '5000'),
+       (7, 'Mouse', '1998', '6000'),
+       (8, 'Mouse', '1999', '3400'),
+       (9, 'Mouse', '2000', '4600');
+Input DataFrame---------------------------------------------------------------------------------------------------------
+|id| product|salesyear|QuantitySold|
+|1| Laptopl 1998| 2500|
+| 2| Laptopl 1999| 3600|
+13| Laptopl 2000| 4200|
+| 4|Keyboard/ 1998/ 2300|
+I 5|Keyboardl 1999| 3600|
+I 6|Keyboardl 2000| 50001
+|7| Mousel 1998| 6000|
+|8| Mousel 1999| 3400|
+| 9 Mousel 20001 4600|
+  
+Resultant DataFrame---------------------------------------------------------------------------------------------------
+product|1998|1999|2000|
+Keyboard|2300|3600|5000|
+Laptop| I 2500 - 3600 4200
+Mouse|600e|3400|4600|
+
+Solution---------------------------------------------------------------------------------------------------------------
+select product,
+sum(case when salesyear=1998 then QuantitySold end) as '1998',
+sum(case when salesyear=1999 then QuantitySold end) as '1999',
+sum(case when salesyear=2000 then QuantitySold end) as '2000'
+from product 
+group by product order by product
