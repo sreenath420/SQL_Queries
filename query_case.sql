@@ -125,3 +125,62 @@ sum(case when salesyear=1999 then QuantitySold end) as '1999',
 sum(case when salesyear=2000 then QuantitySold end) as '2000'
 from product 
 group by product order by product
+
+
+------------------------------------------------------------------------------------------------
+Question-
+1. For every customer who bought Photoshop (Here
+only Customer_id 123 and 913 has bought
+Photoshop)
+2. Return a list of the customers, and the total spent
+on all the products except for Photoshop products
+
+Create table pshop(
+CUSTOMERID int,
+PRODUCT varchar(20),
+REVENUE int
+);
+
+INSERT INTO pshop (CUSTOMERID,PRODUCT,REVENUE)
+VALUES (123, 'Photoshopl', 50),
+(123, 'Premier Pro', 100),
+(123,'After Effects', 50),
+(234, 'Ilustratorl',200),
+(234, 'Premier Pro', 100),
+(562, 'Ilustratorl', 200),
+(913, 'Photoshopl',50),
+(913, 'Premier Pro', 100),
+(913, 'Ilustratorl',200);
+  
+Input DataFrame---------------------------------------------------------------------------------------------------------
+123| Photoshopl 50|
+123| Premier Pro| 100|
+123|After Effects| 50|
+234| Ilustratorl 200|
+234| Premier Pro| 100|
+562| Ilustratorl 200|
+913| Photoshopl 50|
+913| Premier Pro| 100|
+913| Ilustratorl 200|
+
+Resultant DataFrame---------------------------------------------------------------------------------------------------
+CUSTOMER_ID|total_spend|
+123|150
+913|300
+
+Solution1---------------------------------------------------------------------------------------------------------------
+select CUSTOMERID,
+sum(case when PRODUCT!='Photoshopl' then REVENUE end) as a 
+FROM PSHOP WHERE CUSTOMERID IN
+(select CUSTOMERID
+FROM PSHOP where PRODUCT ='Photoshopl')
+GROUP BY CUSTOMERID;
+select CUSTOMERID
+FROM PSHOP where PRODUCT ='Photoshopl'
+  
+Solution2---------------------------------------------------------------------------------------------------------------
+with cte as 
+(select CUSTOMERID,REVENUE
+FROM PSHOP where PRODUCT !='Photoshopl' and CUSTOMERID in ('123','913'))
+select CUSTOMERID,sum(REVENUE) as total_spend from cte
+group BY CUSTOMERID;
