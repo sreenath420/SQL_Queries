@@ -184,3 +184,60 @@ with cte as
 FROM PSHOP where PRODUCT !='Photoshopl' and CUSTOMERID in ('123','913'))
 select CUSTOMERID,sum(REVENUE) as total_spend from cte
 group BY CUSTOMERID;
+
+
+----------------------------------------------------------------------------------------------------
+i/p-
+TransactionID, TransactionDate, Amount, TransactionType
+1	              2024-01-15	56	     Debit
+2	              2024-01-15	23	     Credit
+3	              2024-01-15	880	     Credit
+4	              2024-01-15	76	     Debit
+5	              2024-01-16	60	     Credit
+6	              2024-01-16	146	     Debit
+			
+o/p-
+TransactionDate, Amount
+2024-01-15	     771
+2024-01-16	     -86
+----------------------------------------------------------------------------------------------------
+drop table FinancialTransactions;
+create table FinancialTransactions
+(TransactionID int primary key,
+TransactionDate date,
+Amount float,
+TransactionType varchar(10));
+--Data Insertion Script
+Insert into FinancialTransactions
+(TransactionID,TransactionDate,Amount,TransactionType)
+values
+(1,'2024-01-15',56.00,'Debit'),
+(2,'2024-01-15',23.00,'Credit'),
+(3,'2024-01-15',880.00,'Credit'),
+(4,'2024-01-15',76.00,'Debit'),
+(5,'2024-01-16',60.00,'Credit'),
+(6,'2024-01-16',146.00,'Debit');
+select * from FinancialTransactions;
+
+--------------------------------------------------solution1----------------------------------------
+select 
+TransactionDate, 
+sum(case when TransactionType='credit' then Amount else - Amount end) as Amount
+From FinancialTransactions
+group by TransactionDate;
+
+--------------------------------------------------solution2------------------------------------------
+with sum as(
+select TransactionDate,sum(Amount) as a
+From FinancialTransactions where TransactionType='credit'
+group by TransactionDate )
+,diff as(
+select TransactionDate,sum(Amount) as b
+From FinancialTransactions where TransactionType='debit'
+group by TransactionDate 
+)
+select 
+s.TransactionDate, (s.a-d.b) as Amount
+from sum s
+join diff d
+on s.TransactionDate=d.TransactionDate;
