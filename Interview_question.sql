@@ -83,4 +83,53 @@ select empid,
   sum(salary) over(order by empid)
   from emp111
 
+Datasets:
 
+Table 1 - Employee:
+
+id	first_name	last_name	salary	department_id
+1	John	Smith	20000	1
+2	Ava	Muffinson	10000	5
+3	Cailin	Ninson	30000	2
+4	Mike	Peterson	20000	2
+5	Ian	Peterson	80000	2
+6	John	Mills	50000	3
+Table 2 - Projects:
+
+id	title	start_date	end_date	budget
+1	Build a cool site	2011-10-28	2012-01-26	1000000
+2	Update TPS Reports	2011-07-20	2011-10-28	100000
+3	Design 3 New Silly Walks	2009-05-11	2009-08-19	100
+Table 3 - Department
+
+id	name
+1	Reporting
+2	Engineering
+3	Marketing
+4	Biz Dev
+5	Silly Walks
+Table 4 - Employee Projects
+
+project_id	employee_id
+2	1
+3	2
+1	3
+1	4
+1	5
+Please answer the following questions by writing a SQL query (MySQL) per answer.
+
+Question 1 :
+
+Find the Second Highest Salary Getter for each Department.
+
+Question 2 :
+
+Select all projects that have more than 1 employee working for it ;
+
+Question 3:
+
+What All Projects are running under what all departments :
+
+Question 4:
+
+Count the Number Of Employees in Each Departments. If any department doesn’t have any employee, show 0 as the number of employees.
