@@ -1,4 +1,7 @@
+what is use of cte tables.
 
+Common Table Expressions (CTEs) are temporary result sets in SQL queries that can be used to simplify complex queries 
+and improve code readability. CTEs are only used within the context of a single query and are not stored in the database.
 ---------------------------------------------------->input<----------------------------------------------------------------
 person   TYPE	age
 A1		Adult	54
