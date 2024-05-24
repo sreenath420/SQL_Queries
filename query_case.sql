@@ -241,3 +241,41 @@ s.TransactionDate, (s.a-d.b) as Amount
 from sum s
 join diff d
 on s.TransactionDate=d.TransactionDate;
+
+--------------------------------------------------->query<------------------------------------------------------------------
+-------------------->input<------------------------
+contact  col1  col2  col3  col4     modified_date
+abc		  x		y					2024-04-03
+abc				m	  d				2024-04-05
+abc					  g	   k		2024-04-06
+abc		  q		      a	   o		2024-04-04
+
+------------->ouput<--------------
+abc	q	m	g	k
+--->create table 
+create table concta(
+contact varchar(10),
+col1   varchar(2),
+col2 varchar(2),
+col3 varchar(2),
+col4 varchar(2),
+modified_date date
+)
+-->insert values into table<---------
+insert into concta values
+('abc','x','y',null,null,'2024-04-03'),
+('abc',null,'m','d',null,'2024-04-05'),
+('abc',null,null,'g','k','2024-04-06'),
+('abc','q',null,'a','o','2024-04-04');
+
+select * from concta
+---------------------------------->query<----------------------
+select contact,
+min(case when modified_date then col1 end) as col,
+min(case when modified_date then col2 end) as col, 
+max(case when modified_date then col3 end) as col,
+min(case when modified_date then col4 end) as col  
+from concta
+group by contact
+
+
