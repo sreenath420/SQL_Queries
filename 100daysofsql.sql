@@ -2,7 +2,8 @@ Namastekart, an e-commerce company, has observed a notable surge in return order
 
  
 
-For instance, if a customer named ABC has placed 4 orders and returned 3 of them, they should be included in the output. On the other hand, if a customer named XYZ has placed 5 orders but only returned 2, they should not be included in the output. Write an SQL to find list of customers along with their return percent(Round to 2 decimal places).
+For instance
+, if a customer named ABC has placed 4 orders and returned 3 of them, they should be included in the output. On the other hand, if a customer named XYZ has placed 5 orders but only returned 2, they should not be included in the output. Write an SQL to find list of customers along with their return percent(Round to 2 decimal places).
 
 Table: orders (primary key : order_id)
 
