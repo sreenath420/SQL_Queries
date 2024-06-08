@@ -10,6 +10,7 @@ Query
 
 select id,name,sal,((0.1*sal)+sal) as incre_sal from employee;
 ---------------------------------------------------------------------------------------------------------------------------------------------
+
 3.Second highest salary
 
 with cte as
@@ -17,6 +18,10 @@ with cte as
 select emp_name,salary,dense_rank() over(order by salay desc) as rnk from emp
 )
 select salary from cte where rnk=3
+Method 2:-
+with subquery
+SELECT MAX(SALARY) FROM Employee WHERE SALARY < (SELECT MAX(SALARY) FROM Employee);
+
 -----------------------------------------------------------------------------------------------------------------------------------------------
 4.Delete duplicate records from Employee table(e-id) column
 
