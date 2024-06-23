@@ -22,7 +22,7 @@ return_date	date
 
  
 Example Input
-
+ 
 orders
 
 order_id	order_date	customer_name	sales
