@@ -75,6 +75,23 @@ Example Output
 laptop_views	      mobile_views
   2					              3
 
+
+
+Create table devices (
+user_id int,
+device_type varchar(20),
+view_time date
+);
+
+Insert into devices values
+(123,'tablet','2022-01-02'),
+(125,'laptop','2022-01-07'),
+(128,'laptop','2022-02-09'),
+(129,'phone', '2022-02-09'),
+(145,'tablet','2022-02-24');
+
+	
+
 SELECT sum(case WHEN device_type='laptop' THEN 1 else 0 end) as laptop_views,
 sum(case WHEN device_type in('tablet','phone') THEN 1 else 0 end) as mobile_views
 FROM viewership
