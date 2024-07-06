@@ -201,3 +201,16 @@ CustomerID    CustomerName            OrderDate                OrderID
 2	          Jane Smith	          2023-02-20	             102
 3	          Michael Johnson	      2023-03-10	             103
 4	          Emily Brown	          2023-05-12	             105
+
+-------------------------------------------------->second method2<-------------------------------------------------------------------
+
+WITH LatestOrders AS (
+    SELECT CustomerID, OrderID, OrderDate,
+           ROW_NUMBER() OVER (PARTITION BY CustomerID ORDER BY OrderDate DESC) AS RowNum
+    FROM Orders
+    WHERE YEAR(OrderDate) = 2023
+)
+SELECT c.CustomerID, c.CustomerName, lo.OrderID, lo.OrderDate
+FROM Customers c
+INNER JOIN LatestOrders lo ON c.CustomerID = lo.CustomerID
+WHERE lo.RowNum = 1;
