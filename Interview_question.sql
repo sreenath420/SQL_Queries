@@ -138,3 +138,66 @@ What All Projects are running under what all departments :
 Question 4:
 
 Count the Number Of Employees in Each Departments. If any department doesn’t have any employee, show 0 as the number of employees.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Question 5:
+Orders table contains order information, including the CustomerID, OrderID, and OrderDate. The Customers table contains customer information, 
+including the CustomerID and CustomerName.we need to retrieve the latest order made by each customer in the year 2023.
+
+
+
+-- Create Customers table
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(100)
+);
+
+
+-- Create Orders table
+CREATE TABLE Orders (
+    OrderID INT,
+    CustomerID INT,
+    OrderDate DATE
+);
+
+-- Insert sample data into Customers table
+INSERT INTO Customers (CustomerID, CustomerName)
+VALUES
+    (1, 'John Doe'),
+    (2, 'Jane Smith'),
+    (3, 'Michael Johnson'),
+    (4, 'Emily Brown');
+
+-- Insert sample data into Orders table
+INSERT INTO Orders (OrderID, CustomerID, OrderDate)
+VALUES
+    (101, 1, '2023-01-15'),
+    (102, 2, '2023-02-20'),
+    (103, 3, '2023-03-10'),
+    (104, 1, '2023-04-05'),
+    (105, 4, '2023-05-12'),
+    (106, 2, '2023-06-25'),
+    (107, 3, '2023-07-08'),
+    (108, 1, '2023-08-17'),
+    (109, 2, '2023-09-22'),
+    (110, 4, '2023-10-30');
+ 
+select C.CustomerID,C.CustomerName,O.OrderDate,O.OrderID 
+from Customers C
+inner join 
+(
+select CustomerID,OrderDate,OrderID,
+row_number() over(partition by customerID order by OrderDate) as rnk
+from Orders where year(OrderDate)=2023) O
+on C.CustomerID=O.CustomerID and O.rnk=1
+ 
+
+
+-------------------------------->output<----------------------------==
+CustomerID    CustomerName            OrderDate                OrderID
+-----------------------------------------------------------------------
+1	          John Doe	              2023-01-15	             101
+2	          Jane Smith	          2023-02-20	             102
+3	          Michael Johnson	      2023-03-10	             103
+4	          Emily Brown	          2023-05-12	             105
