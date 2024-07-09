@@ -165,7 +165,8 @@ select first_name,last_name,salary,department_id,job_id from employees where dep
   WHERE job_id = (SELECT job_id
                     FROM employees
                     WHERE employee_id = 169);
-6. Write a query to display the name (first name and last name), salary, department id for those employees who earn such amount of salary which is the smallest salary of any of the departments. */
+6. Write a query to display the name (first name and last name), salary, department id for those employees who earn such amount of salary 
+ which is the smallest salary of any of the departments. */
 
 SELECT first_name,
        last_name,
