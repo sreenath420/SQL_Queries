@@ -50,3 +50,73 @@ where model_id in (select model_id
                        from cars) x
                   where x.rn > 1);
 
+
+----------------------------------------------------------->Joins<--------------------------------------------------------------------
+
+CREATE TABLE Table1 (
+    ID VARCHAR(255)
+);
+
+INSERT INTO Table1 (ID) VALUES
+('1'),
+('1'),
+('2'),
+('3'),
+(NULL),
+(NULL),
+('');
+CREATE TABLE Table2 (
+    ID VARCHAR(255)
+);
+
+INSERT INTO Table2 (ID) VALUES
+('1'),
+('1'),
+('1'),
+('5'),
+(NULL),
+(NULL);
+
+SELECT Table1.ID AS Table1_ID, Table2.ID AS Table2_ID
+FROM Table1
+INNER JOIN Table2 ON Table1.ID = Table2.ID;
+o/p:-
+1	1
+1	1
+1	1
+1	1
+1	1
+1	1
+
+SELECT Table1.ID AS Table1_ID, Table2.ID AS Table2_ID
+FROM Table1
+LEFT JOIN Table2 ON Table1.ID = Table2.ID;
+
+o/p:-
+1	1
+1	1
+1	1
+1	1
+1	1
+1	1
+2	
+3	
+	
+SELECT Tab12.ID AS Table1_ID, Tab14.ID AS Table2_ID
+FROM Tab12
+RIGHT JOIN Tab14 ON Tab12.ID = Tab14.ID;
+
+o/p:-
+
+1	1
+1	1
+1	1
+1	1
+1	1
+1	1
+	5
+	
+	
+	
+	
+
