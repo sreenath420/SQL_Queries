@@ -214,3 +214,15 @@ SELECT c.CustomerID, c.CustomerName, lo.OrderID, lo.OrderDate
 FROM Customers c
 INNER JOIN LatestOrders lo ON c.CustomerID = lo.CustomerID
 WHERE lo.RowNum = 1;
+
+
+----------------------------------------------->13th max salary<-----------------------------------------
+without using:
+rank, dense rank, rownumber, order, limit, offset, top
+query:-
+SELECT DISTINCT A.salary
+FROM employees A
+WHERE 13 = (SELECT COUNT(DISTINCT B.salary)
+            FROM employees B
+            WHERE B.salary >= A.salary);
+
