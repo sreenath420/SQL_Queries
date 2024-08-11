@@ -226,3 +226,60 @@ WHERE 13 = (SELECT COUNT(DISTINCT B.salary)
             FROM employees B
             WHERE B.salary >= A.salary);
 
+------------------------>2nd highest salary dept wise<-------------------------
+
+
+2nd Hightest salary on dept wise in sql query
+
+
+drop table if exists Employee
+CREATE TABLE Employee (
+    empid INT PRIMARY KEY,
+    name VARCHAR(50),
+    sal INT
+);
+
+INSERT INTO Employee (empid, name, sal) VALUES
+(101, 'Raju', 10000),
+(102, 'Ramu', 15000),
+(103, 'Kiran', 8000),
+(104, 'Ravi', 7000);
+
+drop table if exists Dept
+
+CREATE TABLE Dept (
+    deptno INT,
+    empid INT,
+    FOREIGN KEY (empid) REFERENCES Employee(empid)
+);
+
+INSERT INTO Dept (deptno, empid) VALUES
+(10, 101),
+(10, 103),
+(20, 102),
+(10, 104);
+
+query:
+
+WITH RankedSalaries AS (
+    SELECT 
+        d.deptno, 
+        e.sal, 
+        DENSE_RANK() OVER (PARTITION BY d.deptno ORDER BY e.sal DESC) AS rank
+    FROM 
+        Employee e
+    JOIN 
+        Dept d ON e.empid = d.empid
+)
+
+SELECT 
+    deptno, 
+    MAX(sal) AS second_highest_salary
+FROM 
+    RankedSalaries
+WHERE 
+    rank = 2
+GROUP BY 
+    deptno;
+
+
