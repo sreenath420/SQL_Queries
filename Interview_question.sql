@@ -282,4 +282,41 @@ WHERE
 GROUP BY 
     deptno;
 
+-------------------------------->find student more than 70 marks each subject greater than 3<----------------------------------
+output:-
+student_name  subjects_above_70
+Alice	          3
+Bob		          3
+Charlie	        3
+Eve		          5
+
+CREATE TABLE students (
+    Student_name VARCHAR(50),
+    sub1 INT,
+    sub2 INT,
+    sub3 INT,
+    sub4 INT,
+    sub5 INT
+);
+
+INSERT INTO students (Student_name, sub1, sub2, sub3, sub4, sub5) VALUES
+('Alice', 80, 75, 90, 60, 55),
+('Bob', 65, 70, 75, 80, 85),
+('Charlie', 85, 60, 70, 90, 95),
+('David', 60, 65, 70, 75, 80),
+('Eve', 95, 90, 85, 80, 75);
+
+
+
+with cte as  (
+    SELECT 
+        Student_name,
+        (CASE WHEN sub1 > 70 THEN 1 ELSE 0 END +
+         CASE WHEN sub2 > 70 THEN 1 ELSE 0 END +
+         CASE WHEN sub3 > 70 THEN 1 ELSE 0 END +
+         CASE WHEN sub4 > 70 THEN 1 ELSE 0 END +
+         CASE WHEN sub5 > 70 THEN 1 ELSE 0 END) AS subjects_above_70
+    FROM students
+) select * from cte where subjects_above_70 >=3
+
 
