@@ -215,7 +215,7 @@ FROM Customers c
 INNER JOIN LatestOrders lo ON c.CustomerID = lo.CustomerID
 WHERE lo.RowNum = 1;
 
-
+Question:6
 ----------------------------------------------->13th max salary<-----------------------------------------
 without using:
 rank, dense rank, rownumber, order, limit, offset, top
@@ -225,7 +225,7 @@ FROM employees A
 WHERE 13 = (SELECT COUNT(DISTINCT B.salary)
             FROM employees B
             WHERE B.salary >= A.salary);
-
+Question:7
 ------------------------>2nd highest salary dept wise<-------------------------
 
 
@@ -282,6 +282,7 @@ WHERE
 GROUP BY 
     deptno;
 
+Question :7
 -------------------------------->find student more than 70 marks each subject greater than 3<----------------------------------
 output:-
 student_name  subjects_above_70
