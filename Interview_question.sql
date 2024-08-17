@@ -320,4 +320,40 @@ with cte as  (
     FROM students
 ) select * from cte where subjects_above_70 >=3
 
+Question:-8 
+------------------------------------>Cumulative_sum_by_month_wise<---------------------------------
+
+revenue    date
+3000      22-may   
+5000      23-may 
+5000      25-may  
+10000     22-june
+12500      3-july
+ 
+output
+date   total_revenue
+22-may   3000
+23-may   8000
+25-may   13000
+22-june  10000 
+3-july   12500
+
+Query:-
+
+CREATE TABLE revenue_table (
+    revenue INT,
+    revenue_date DATE
+);
+
+INSERT INTO revenue_table (revenue, revenue_date) VALUES
+(3000, '2023-05-22'),
+(5000, '2023-05-23'),
+(5000, '2023-05-25'),
+(10000, '2023-06-22'),
+(12500, '2023-07-03');
+
+SELECT Month(revenue_date) AS month,
+    SUM(revenue) OVER (PARTITION BY Month(revenue_date) ORDER BY revenue_date) AS cumulative_revenue
+FROM 
+    revenue_table;
 
