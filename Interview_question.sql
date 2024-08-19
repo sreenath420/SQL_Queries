@@ -48,9 +48,11 @@ kaThY
 EleNa
 vArUn
 
+ename
 Alen
 Varun
 Kathy
+Elena
 
 create table tab1(
 ename varchar(30)
