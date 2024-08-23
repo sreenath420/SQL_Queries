@@ -406,3 +406,31 @@ JOIN
 GROUP BY 
     c.customer_id, c.name, c.city;
 
+------------------------------->query to get all dept_id  in which average salary is greater than 12000  consider employee less than 5000<-------------------------
+
+CREATE TABLE employees234 (
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    dept_id INT,
+    salary DECIMAL(10, 2)
+);
+
+INSERT INTO employees234 (emp_id, name, dept_id, salary) VALUES
+(1, 'Manish', 100, 10000),
+(2, 'Ankit', 100, 15000),
+(3, 'Mohan', 100, 10000),
+(4, 'Sohan', 100, 5000),
+(5, 'Amit', 200, 12000),
+(6, 'Ram', 200, 12000),
+(7, 'Shyam', 200, 9000),
+(8, 'Rohan', 200, 5000);
+
+SELECT dept_id, AVG(salary) AS average_salary
+FROM employees234 where salary > 5000
+GROUP BY dept_id
+HAVING AVG(salary) > 10000;
+
+output
+dept_id     average_salary
+100	       11666.666667
+200	       11000.000000
