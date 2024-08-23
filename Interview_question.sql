@@ -359,3 +359,50 @@ SELECT Month(revenue_date) AS month,
 FROM 
     revenue_table;
 
+--------------------------------------------------->To calculate the total amount spent by each customer if amount is null need update zero<----------------------------------------------
+
+
+CREATE TABLE customer_table (
+    customer_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    city VARCHAR(100)
+);
+
+CREATE TABLE order_table (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (customer_id) REFERENCES customer_table(customer_id)
+);
+
+
+
+INSERT INTO customer_table1(customer_id, name, city) VALUES
+(1, 'John Doe', 'New York'),
+(2, 'Jane Smith', 'Los Angeles'),
+(3, 'Mike Johnson', 'Chicago');
+
+
+INSERT INTO order_table1(order_id, customer_id, order_date, amount) VALUES
+(101, 1, '2024-08-01', 150.00),
+(102, 2, '2024-08-02', 200.00),
+(103, 1, '2024-08-03', 300.00),
+(104, 3, '2024-08-04', 450.00);
+
+
+
+
+SELECT 
+    c.customer_id,
+    c.name,
+    c.city,
+    coalesce(sum(o.amount),0) AS total_amount
+FROM 
+    customer_table1 c
+left
+JOIN 
+    order_table1 o ON c.customer_id = o.customer_id
+GROUP BY 
+    c.customer_id, c.name, c.city;
+
