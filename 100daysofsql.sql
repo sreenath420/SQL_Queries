@@ -21,7 +21,7 @@ return_date	date
  
 
  
-Example Input
+Example_Input
  
 orders
 
@@ -41,7 +41,7 @@ order_id	return_date
 3	2023-01-05
 7	2023-01-10
  
-Expected Output:
+Expected Output:-
 
 customer_name	Return_Percent
 Alexa				75.0
