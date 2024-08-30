@@ -1,5 +1,5 @@
 
-1.select count of duplicate id;
+1.select count of duplicate id
 
 Query
 
