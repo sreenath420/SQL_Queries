@@ -434,3 +434,60 @@ output
 dept_id     average_salary
 100	       11666.666667
 200	       11000.000000
+
+---------------------------------------------------->count the number of records<-----------------------------------------------
+drop table table2
+CREATE TABLE table1 (
+    column1 INT
+);
+
+INSERT INTO table1 (column1) 
+VALUES (1), (1), (1), (NULL);
+
+CREATE TABLE table2 (
+    column1 INT
+);
+
+INSERT INTO table2 (column1) 
+VALUES (1), (1), (NULL);
+
+output records count:-
+
+select count(*) from  table1 join table2 on table1.column1=table2.column1
+6
+	column1	column1
+	1	        1
+	1	        1
+	1	        1
+	1	        1
+	1	        1
+	1	        1
+
+select count(*) from  table1 right outer join table2 on table1.column1=table2.column1
+7
+column1	column1
+1	        1
+1	        1
+1	        1
+1	        1
+1	        1
+1	        1
+Null      Null
+
+select count(*) from  table1 full outer join table2 on table1.column1=table2.column1
+8
+
+column1	column1
+1	        1
+1	        1
+1	        1
+1	        1
+1	        1
+1	        1
+Null      Null
+Null      Null
+
+
+
+	
+
