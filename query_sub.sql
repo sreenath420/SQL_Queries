@@ -116,7 +116,8 @@ where leave_ty=2
 
 1. Write a query to display all the orders from the orders table issued by the salesman 'Paul Adam'. */
 ANS->SELECT ord_no, purch_amt, ord_date, customer_id, salesman_id 
-FROM ORDERS where salesman_ID IN 
+FROM ORDERS where salesman_ID 
+IN 
 (SELECT salesman_ID  FROM SALESMAN WHERE name='Paul Adam')
 * 2. Write a query to display all the orders for the salesman who belongs to the city London. *.'
 SELECT ord_no, purch_amt, ord_date, customer_id, salesman_id 
