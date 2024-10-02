@@ -1,7 +1,7 @@
 
 1.select count of duplicate id
 
-Query.
+Query
 
 select id from employee group by id having count(id)>1;
 --------------------------------------------------------------------------------------------------------------------------------------------
