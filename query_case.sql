@@ -12,7 +12,41 @@ CASE
     ELSE resultN
 END
 
+-------------------------------------------->Example:-1<--------------------------------------------------------------------
+CREATE TABLE Employees (
+    e_id INT PRIMARY KEY,            -- Employee ID, unique for each employee
+    e_name VARCHAR(100) NOT NULL,    -- Employee Name
+    department VARCHAR(100),         -- Department Name
+    salary DECIMAL(10, 2),           -- Salary with 2 decimal places
+    hire_date DATE                   -- Date the employee was hired
+);
 
+INSERT INTO Employees (e_id, e_name, department, salary, hire_date)
+VALUES 
+(1, 'Alice', 'Engineering', 6000.00, '2020-06-15'),
+(2, 'Bob', 'Sales', 4500.00, '2019-08-22'),
+(3, 'Charlie', 'Marketing', 5000.00, '2021-01-10'),
+(4, 'David', 'Engineering', 7000.00, '2018-12-05'),
+(5, 'Eve', 'Human Resources', 5500.00, '2022-03-01');
+
+select e_id,
+e_name,
+department,salary,
+case 
+when salary <=5000 then 'grade_3'
+else 'grade_2'
+end as salary_grades
+from Employees
+
+ouput:-
+1	Alice	Engineering	6000.00	grade_2
+2	Bob	Sales	4500.00	grade_3
+3	Charlie	Marketing	5000.00	grade_3
+4	David	Engineering	7000.00	grade_2
+5	Eve	Human Resources	5500.00	grade_2
+
+
+-------------------------------------------------->
 
 
 create table customer(
