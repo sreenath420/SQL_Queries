@@ -1,3 +1,20 @@
+--------------------------------------------------->Case Statemnt<----------------------------------------------------
+
+A CASE statement in SQL allows you to perform conditional logic inside a query, similar to if-else statements in programming languages. 
+It evaluates a list of conditions and returns a value when the first condition is met. 
+If no conditions are met, an optional ELSE clause can return a default value
+
+Syntax
+CASE
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    ...
+    ELSE resultN
+END
+
+
+
+
 create table customer(
 store int,
 week int,
