@@ -581,3 +581,13 @@ output:-
 111	Melinda	 IT	8000
 
 
+--------------------------------------->MORE THAN AVERAGE SALARY THEN MENTION FLAG Y OR LESS AVERAGE SALARY FLAG N<---------------------------------------------
+
+select emp_ID,
+emp_NAME,
+DEPT_NAME,
+salary,
+avg(salary) over(PARTITION by dept_name) as avg_salary,
+case WHEN salary> avg(salary) over(partition by dept_name) THEN 'Y'
+ELSE 'N' END AS ABOVE_AVG
+from employee;
