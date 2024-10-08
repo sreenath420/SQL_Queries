@@ -71,7 +71,7 @@ Alen
 Kathy
 Elena
 Varun
------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------>8<-----------------------------------------------------------------------------------
 input
 empid 	empname 		 esalary
 1		    sharan			  100
@@ -484,9 +484,38 @@ column1	column1
 1	        1
 1	        1
 1	        1
-Null      Null
-Null      Null
+Null           Null
+Null           Null
 
+------------------------------------------------------><-------------------------------------
+
+input
+employee manager
+--------------
+Lilly	 null
+Justine	Lilly
+Bella	Lilly
+Colton	Justine
+Arthur	Justine
+
+output
+Employee node_type
+------------------------
+Lilly	root
+Justine	inner
+Colton	leaf
+Bella	leaf
+Arthur	leaf
+
+
+Query:-
+
+select employee,
+case when manager is null then 'root' 
+     when employee in (select distinct manager from manager where manager is not null)
+     then 'inner' else 'leaf'
+end as node_type
+from manager;
 
 
 	
