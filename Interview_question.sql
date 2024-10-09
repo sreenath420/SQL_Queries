@@ -591,3 +591,58 @@ avg(salary) over(PARTITION by dept_name) as avg_salary,
 case WHEN salary> avg(salary) over(partition by dept_name) THEN 'Y'
 ELSE 'N' END AS ABOVE_AVG
 from employee;
+
+
+-------------------------------------->Calculate total sales, average sales, and the number of transactions per product per month.
+Filter out products with no sales.
+Generate a report with the following columns: ProductID, Month, TotalSales, AverageSales, TransactionCount<------------------------------------------
+
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100)
+);
+
+
+INSERT INTO Products (ProductID, ProductName) VALUES
+(1, 'Laptop'),
+(2, 'Smartphone'),
+(3, 'Tablet'),
+(4, 'Smartwatch');
+
+
+drop table Sales;
+CREATE TABLE Sales (
+    TransactionID INT PRIMARY KEY,
+    ProductID INT,
+    SaleDate DATE,
+    SaleAmount DECIMAL(10, 2),
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+);
+
+
+INSERT INTO Sales (TransactionID, ProductID, SaleDate, SaleAmount) VALUES
+(1, 1, '2023-01-15', 1200.50),
+(2, 1, '2023-01-20', 1100.00),
+(3, 2, '2023-02-05', 800.75),
+(4, 2, '2023-02-18', 950.00),
+(5, 3, '2023-03-10', 500.00),
+(6, 3, '2023-03-15', 520.00),
+(7, 1, '2023-04-25', 1300.00),
+(8, 4, '2023-04-30', 300.00);
+
+SELECT 
+    s.ProductID,
+    DATE_FORMAT(s.SaleDate, '%Y-%m') AS Month, -- Format the SaleDate to Year-Month
+    SUM(s.SaleAmount) AS TotalSales,           -- Calculate the total sales for the product per month
+    AVG(s.SaleAmount) AS AverageSales,         -- Calculate the average sales for the product per month
+    COUNT(s.TransactionID) AS TransactionCount -- Count the number of transactions for the product per month
+FROM 
+    Sales s
+INNER JOIN 
+    Products p ON s.ProductID = p.ProductID   -- Only include products that have sales
+GROUP BY 
+    s.ProductID, 
+    DATE_FORMAT(s.SaleDate, '%Y-%m')          -- Group by ProductID and Month
+ORDER BY 
+    s.ProductID, 
+    Month;
