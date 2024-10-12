@@ -218,7 +218,7 @@ INNER JOIN LatestOrders lo ON c.CustomerID = lo.CustomerID
 WHERE lo.RowNum = 1;
 
 Question:6
------------------------------------------------>13th max salary<-----------------------------------------
+----------------------------------------------->9.13th max salary<-----------------------------------------
 without using:
 rank, dense rank, rownumber, order, limit, offset, top
 query:-
@@ -228,7 +228,7 @@ WHERE 13 = (SELECT COUNT(DISTINCT B.salary)
             FROM employees B
             WHERE B.salary >= A.salary);
 Question:7
------------------------->2nd highest salary dept wise<-------------------------
+------------------------>10.2nd highest salary dept wise<-------------------------
 
 
 2nd Hightest salary on dept wise in sql query
@@ -285,7 +285,7 @@ GROUP BY
     deptno;
 
 Question :7
--------------------------------->find student more than 70 marks each subject greater than 3<----------------------------------
+-------------------------------->11.find student more than 70 marks each subject greater than 3<----------------------------------
 output:-
 student_name  subjects_above_70
 Alice	          3
@@ -323,7 +323,7 @@ with cte as  (
 ) select * from cte where subjects_above_70 >=3
 
 Question:-8 
------------------------------------->Cumulative_sum_by_month_wise<---------------------------------
+------------------------------------>12.Cumulative_sum_by_month_wise<---------------------------------
 
 revenue    date
 3000      22-may   
@@ -359,7 +359,7 @@ SELECT Month(revenue_date) AS month,
 FROM 
     revenue_table;
 
---------------------------------------------------->To calculate the total amount spent by each customer if amount is null need update zero<----------------------------------------------
+--------------------------------------------------->13.To calculate the total amount spent by each customer if amount is null need update zero<----------------------------------------------
 
 
 CREATE TABLE customer_table (
@@ -406,7 +406,7 @@ JOIN
 GROUP BY 
     c.customer_id, c.name, c.city;
 
-------------------------------->query to get all dept_id  in which average salary is greater than 12000  consider employee less than 5000<-------------------------
+------------------------------->14.Query to get all dept_id  in which average salary is greater than 12000  consider employee less than 5000<-------------------------
 
 CREATE TABLE employees234 (
     emp_id INT PRIMARY KEY,
@@ -435,7 +435,7 @@ dept_id     average_salary
 100	       11666.666667
 200	       11000.000000
 
----------------------------------------------------->count the number of records<-----------------------------------------------
+---------------------------------------------------->15.count the number of records<-----------------------------------------------
 drop table table2
 CREATE TABLE table1 (
     column1 INT
@@ -487,7 +487,7 @@ column1	column1
 Null           Null
 Null           Null
 
-------------------------------------------------------><-------------------------------------
+------------------------------------------------------>16<-------------------------------------
 
 input
 employee manager
@@ -519,7 +519,7 @@ from manager;
 
 
 
-------------------------------------->matching salary and deparment_name write query in sql<-------------------------------------------------
+------------------------------------->17.matching salary and deparment_name write query in sql<-------------------------------------------------
 
 create table employee
 ( emp_ID int primary key
@@ -581,7 +581,7 @@ output:-
 111	Melinda	 IT	8000
 
 
---------------------------------------->MORE THAN AVERAGE SALARY THEN MENTION FLAG Y OR LESS AVERAGE SALARY FLAG N<---------------------------------------------
+--------------------------------------->18.MORE THAN AVERAGE SALARY THEN MENTION FLAG Y OR LESS AVERAGE SALARY FLAG N<---------------------------------------------
 
 select emp_ID,
 emp_NAME,
@@ -593,7 +593,7 @@ ELSE 'N' END AS ABOVE_AVG
 from employee;
 
 
--------------------------------------->Calculate total sales, average sales, and the number of transactions per product per month.
+-------------------------------------->19.Calculate total sales, average sales, and the number of transactions per product per month.
 Filter out products with no sales.
 Generate a report with the following columns: ProductID, Month, TotalSales, AverageSales, TransactionCount<------------------------------------------
 
@@ -647,7 +647,7 @@ ORDER BY
     s.ProductID, 
     Month;
 
------------------------------------------>How to delete duplicate id in sql<---------------------------------------------------------
+----------------------------------------->20.How to delete duplicate id in sql<---------------------------------------------------------
 
 ID
 1
@@ -671,4 +671,38 @@ select id, row_number() over(partition by id order by id) as rnk
 from tab2
 )
 delete from cte where rnk >1;
+
+----------------------------------------------------->21<------------------------------------------------------
+
+id, email
+1, aaa@gmail.com
+2, bbb@gmail.com
+3, ccc@gmail.com
+4, aaa@gmail.com
+
+
+output
+
+id, email
+1, aaa@gmail.com
+2, bbb@gmail.com
+3, ccc@gmail.com
+
+SELECT id, email
+FROM (
+    SELECT 
+        id, 
+        email, 
+        ROW_NUMBER() OVER (PARTITION BY email ORDER BY id) AS rn
+    FROM your_table_name
+) ranked_emails
+WHERE rn = 1;
+
+
+2nd way
+SELECT MIN(id) AS id, email
+FROM your_table_name
+GROUP BY email;
+
+
 
