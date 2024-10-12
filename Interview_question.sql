@@ -646,3 +646,29 @@ GROUP BY
 ORDER BY 
     s.ProductID, 
     Month;
+
+----------------------------------------->How to delete duplicate id in sql<---------------------------------------------------------
+
+ID
+1
+1
+1
+2
+3
+4
+
+
+create table tab2(
+id int)
+
+
+insert into tab2 values(1),(1),(1),(2),(2),(3),(4);
+
+how to delete duplicate id in sql
+
+with cte as(
+select id, row_number() over(partition by id order by id) as rnk
+from tab2
+)
+delete from cte where rnk >1;
+
