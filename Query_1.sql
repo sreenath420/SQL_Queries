@@ -1,5 +1,5 @@
 Problem:
-Given a table with sell dates and product names, our goal is to find, for each date, the count of unique products sold and their names sorted lexicographically.
+Given a table with sell dates and product names, our goal is to find, for each date  the count of unique products sold and their names sorted lexicographically.
 
 Activities Table:
 +------------+------------+
