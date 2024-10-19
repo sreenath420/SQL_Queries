@@ -741,3 +741,20 @@ EmployeeID	EmployeeName	ManagerName
 4	David	Bob
 5	Eva	Bob
 6	Frank	Charlie
+
+---------------------------------------------------------->23<--------------------------------------------------
+tablA
+id pk,
+name string
+5 rows
+
+tab2B
+id 
+phone_number
+10 rows
+
+TabA left outer join TabB
+
+min and max number of rows
+max records 14
+min records 5
