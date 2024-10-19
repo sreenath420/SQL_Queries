@@ -776,6 +776,18 @@ chennai	    pune	      400
 
 
 
+CREATE TABLE route_table (
+    source VARCHAR(100),
+    destination VARCHAR(100),
+    distance INT
+);
+
+INSERT INTO route_table (source, destination, distance) VALUES ('Bangalore', 'Hyb', 400);
+INSERT INTO route_table (source, destination, distance) VALUES ('Hyb', 'Bangalore', 400);
+INSERT INTO route_table (source, destination, distance) VALUES ('Delhi', 'Mumbai', 400);
+INSERT INTO route_table (source, destination, distance) VALUES ('Mumbai', 'Delhi', 400);
+INSERT INTO route_table (source, destination, distance) VALUES ('Chennai', 'Pune', 400);
+INSERT INTO route_table (source, destination, distance) VALUES ('Pune', 'Chennai', 400);
 SELECT 
     a.source,
     a.destination,
