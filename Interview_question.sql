@@ -758,3 +758,32 @@ TabA left outer join TabB
 min and max number of rows
 max records 14
 min records 5
+----------------------------------------->24<----------------------------------------------
+
+source	destination	distance
+Bangalore 	Hyb		400
+Hyb		Bangalore 	400
+Delhi	mumbai		400
+mumbai	Delhi		400
+chennai	pune		400
+pune	chennai		400
+
+OUTPUT:		
+source	  destination	distance
+Bangalore 	Hyb	          400
+Delhi	   mumbai	   	  400
+chennai	    pune	      400
+
+
+
+SELECT 
+    a.source,
+    a.destination,
+    a.distance
+FROM 
+    route_table a
+JOIN 
+    route_table b ON a.source < b.destination
+WHERE 
+    a.destination = b.destination AND
+    a.distance = b.distance
