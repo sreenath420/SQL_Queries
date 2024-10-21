@@ -799,3 +799,47 @@ JOIN
 WHERE 
     a.destination = b.destination AND
     a.distance = b.distance
+
+----------------------------------------------->25.emp_name max and min each deparment<----------------------------------
+
+create table employee
+( emp_ID int primary key
+, emp_NAME varchar(50) not null
+, DEPT_NAME varchar(50)
+, SALARY int);
+ 
+insert into employee values(101, 'Mohan', 'Admin', 4000);
+insert into employee values(102, 'Rajkumar', 'HR', 3000);
+insert into employee values(103, 'Akbar', 'IT', 4000);
+insert into employee values(104, 'Dorvin', 'Finance', 6500);
+insert into employee values(105, 'Rohit', 'HR', 3000);
+insert into employee values(106, 'Rajesh',  'Finance', 5000);
+insert into employee values(107, 'Preet', 'HR', 7000);
+insert into employee values(108, 'Maryam', 'Admin', 4000);
+insert into employee values(109, 'Sanjay', 'IT', 6500);
+insert into employee values(110, 'Vasudha', 'IT', 7000);
+insert into employee values(111, 'Melinda', 'IT', 8000);
+insert into employee values(112, 'Komal', 'IT', 10000);
+insert into employee values(113, 'Gautham', 'Admin', 2000);
+insert into employee values(114, 'Manisha', 'HR', 3000);	
+insert into employee values(115, 'Chandni', 'IT', 4500);
+insert into employee values(116, 'Satya', 'Finance', 6500);
+insert into employee values(117, 'Adarsh', 'HR', 3500);
+insert into employee values(118, 'Tejaswi', 'Finance', 5500);
+insert into employee values(119, 'Cory', 'HR', 8000);
+insert into employee values(120, 'Monica', 'Admin', 5000);
+insert into employee values(121, 'Rosalin', 'IT', 6000);
+insert into employee values(122, 'Ibrahim', 'IT', 8000);
+insert into employee values(123, 'Vikram', 'IT', 8000);
+insert into employee values(124, 'Dheeraj', 'IT', 11000);
+ 
+select * from employee order by 3, 4;
+
+with cte AS
+( 
+  select dept_name,max(salary) as max_salary,min(salary) as min_salary 
+  from employee group by dept_name
+ )
+ 
+select e.* from employee e join cte as e2 on e.dept_name=e2.dept_name and (e.salary=e2.max_salary or e.salary=e2.min_salary)
+order by dept_name
