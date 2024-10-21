@@ -843,3 +843,14 @@ with cte AS
  
 select e.* from employee e join cte as e2 on e.dept_name=e2.dept_name and (e.salary=e2.max_salary or e.salary=e2.min_salary)
 order by dept_name
+
+
+------------------------------------>26.trying to compare each employee's salary to the average salary of their department.<---------------------
+
+SELECT employee_id, salary
+FROM employee e
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employee
+    WHERE department_id = e.department_id
+);
