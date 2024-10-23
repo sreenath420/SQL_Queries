@@ -855,7 +855,7 @@ WHERE salary > (
     WHERE department_id = e.department_id
 );
 
------------------------------------>write a query sum of the positive number and sum of negative numbers<---------------------------------------------------
+----------------------------------->27.write a query sum of the positive number and sum of negative numbers<---------------------------------------------------
 x
 --
 5
@@ -870,4 +870,30 @@ SELECT
     SUM(CASE WHEN x < 0 THEN x ELSE 0 END) AS sum_negative
 FROM
     numbers;
+
+------------------------------>28.Count the records<-------------------------------------
+
+CREATE TABLE teams_1 (
+    id int
+);
+
+CREATE TABLE teams_2 (
+    id int
+);
+
+insert into teams_1 value(1),(null),(null),(null),(null);
+
+insert into teams_2 value(1),(null),(null),(null),(null);
+select * from teams_1
+select count(*) from teams_1  join teams_2 on teams_1.id=teams_2.id;
+select count(*) from teams_1 left join teams_2 on teams_1.id=teams_2.id
+select count(*) from teams_1 right join teams_2 on teams_1.id=teams_2.id
+select count(*) from teams_1 cross join teams_2 on teams_1.id=teams_2.id
+inner: 1
+left_join: 5
+right join: 5
+cross: 1
+outer: 9
+
+
 
