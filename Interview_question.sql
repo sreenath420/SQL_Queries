@@ -854,3 +854,20 @@ WHERE salary > (
     FROM employee
     WHERE department_id = e.department_id
 );
+
+----------------------------------->write a query sum of the positive number and sum of negative numbers<---------------------------------------------------
+x
+--
+5
+7
+-4
+3
+-8
+-9
+	
+SELECT
+    SUM(CASE WHEN x > 0 THEN x ELSE 0 END) AS sum_positive,
+    SUM(CASE WHEN x < 0 THEN x ELSE 0 END) AS sum_negative
+FROM
+    numbers;
+
