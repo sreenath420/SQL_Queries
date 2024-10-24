@@ -925,3 +925,33 @@ select * from employees
 where manager_id is not null
 and manager_id not in (select emp_id from employees)
 
+--------------------------->30.To get the customer_id along with the count of their maximum product_id in SQL<---------------------------------------
+customer_id	product_id
+1			5
+2			6
+3			5
+3			6
+1			6
+1			7
+
+output:-
+customer_id  max_count
+1		3
+
+CREATE TABLE customer (
+    customer_id INT,
+    product_id INT
+);
+
+INSERT INTO customer (customer_id, product_id) VALUES (1, 5);
+INSERT INTO customer (customer_id, product_id) VALUES (2, 6);
+INSERT INTO customer (customer_id, product_id) VALUES (3, 5);
+INSERT INTO customer (customer_id, product_id) VALUES (3, 6);
+INSERT INTO customer (customer_id, product_id) VALUES (1, 6);
+INSERT INTO customer (customer_id, product_id) VALUES (1, 7);
+
+Query:-
+SELECT customer_id, COUNT(product_id) AS max_count
+FROM customer_products
+GROUP BY customer_id order by max_count desc limit 1;
+
