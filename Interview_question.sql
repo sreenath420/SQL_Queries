@@ -895,5 +895,33 @@ right join: 5
 cross: 1
 outer: 9
 
+-------------------------->29.To find employees whose managers have left, you can check for manager_id values in the employee table that do not have a corresponding<----------------------------
 
+emp_id  name  manager_id salary
+3        A       1        60000
+12       B       null     30000
+13       C       null      60000
+1        D      11        20000
+11       E       6         20000
+
+output
+mp_id  name  manager_id salary
+11	E	6	20000
+
+CREATE TABLE employees (
+    emp_id INT,
+    name VARCHAR(50),
+    manager_id INT,
+    salary INT
+);
+
+INSERT INTO employees (emp_id, name, manager_id, salary) VALUES (3, 'A', 1, 60000);
+INSERT INTO employees (emp_id, name, manager_id, salary) VALUES (12, 'B', NULL, 30000);
+INSERT INTO employees (emp_id, name, manager_id, salary) VALUES (13, 'C', NULL, 60000);
+INSERT INTO employees (emp_id, name, manager_id, salary) VALUES (1, 'D', 11, 20000);
+INSERT INTO employees (emp_id, name, manager_id, salary) VALUES (11, 'E', 6, 20000);
+
+select * from employees
+where manager_id is not null
+and manager_id not in (select emp_id from employees)
 
