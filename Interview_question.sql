@@ -955,3 +955,45 @@ SELECT customer_id, COUNT(product_id) AS max_count
 FROM customer_products
 GROUP BY customer_id order by max_count desc limit 1;
 
+-------------------------------------->31. exchage student seats in sql<-----------------------------------------
+ 
+
+seats table
+input
+ id | student |
++----+---------+
+| 1  | Doris   |
+| 2  | Abbot   |
+| 3  | Green   |
+| 4  | Emerson |
+| 5  | Jeames  |
+
+output
+ id | student |
++----+---------+
+| 2  | Doris   |
+| 1  | Abbot   |
+| 4  | Green   |
+| 3  | Emerson |
+| 5  | Jeames  |
+
+
+CREATE TABLE seats (
+    id INT PRIMARY KEY,
+    student VARCHAR(50)
+);
+
+INSERT INTO seats (id, student) VALUES(6,'sreenath');
+(1, 'Doris'),
+(2, 'Abbot'),
+(3, 'Green'),
+(4, 'Emerson'),
+(5, 'Jeames')
+
+select case
+ when id=(select max(id) from seats) and id%2=1 then id
+ when id%2=1 then id+1 else id-1  
+ end as id,student
+ from seats
+ 
+
