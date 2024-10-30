@@ -997,3 +997,41 @@ select case
  from seats
  
 
+-------------------------------------------------------------->32.website_age<-----------------------------------------------------------------
+
+usrid, date, page_visited
+1, 2021-10-28, home                          
+1, 2021-10-29, payment
+1, 2021-10-30, managemnet
+2, 2021-10-28, home
+1, 2021-10-28, home
+ 
+ 
+ouput
+Date,home_ct,payment_ct,management_ct
+2021-10-28, 3, 0, 0
+2021-10-29, 0, 1, 0
+2021-10-30, 0, 0, 1
+
+
+CREATE TABLE PageVisits (
+    usrid INT,
+    visit_date DATE,
+    page_visited VARCHAR(50)
+);
+
+INSERT INTO PageVisits (usrid, visit_date, page_visited) VALUES
+(1, '2021-10-28', 'home'),
+(1, '2021-10-29', 'payment'),
+(1, '2021-10-30', 'managemnet'),
+(2, '2021-10-28', 'home'),
+(1, '2021-10-28', 'home');
+
+select visit_date,
+sum(case when page_visited='home' then 1 else 0 end)   home_ct,
+sum(case when page_visited='managemnet' then 1 else 0 end) manament_ct,
+sum(case when page_visited='payment' then 1 else 0  end) pay_ct
+from PageVisits
+group by visit_date
+
+ 
