@@ -5,7 +5,7 @@ Query
 
 select id from employee group by id having count(id)>1;
 --------------------------------------------------------------------------------------------------------------------------------------------
-2.select increment salary sal=10/100=0.1*sal+sal;
+2.select increment sal sal=10/100=0.1*sal+sal;
 Query
 
 select id,name,sal,((0.1*sal)+sal) as incre_sal from employee;
