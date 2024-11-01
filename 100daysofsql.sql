@@ -1,4 +1,4 @@
----------------------------------------------------------------->Query_1<----------------------------------------------------------------------
+--------------------------------------------------------------->Query_1<----------------------------------------------------------------------
 An e-commerce company, has observed a notable surge in return orders recently. They suspect that a specific group of customers may be responsible
 for a significant portion of these returns. To address this issue, their initial goal is to identify customers who have returned more 
 than 50% of their orders. This way, they can proactively reach out to these customers to gather feedback.
