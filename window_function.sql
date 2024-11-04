@@ -48,3 +48,29 @@ ORDER BY EmployeelD )
 as EndDate 
 FROM EmployeeRecords;
 
+
+-------------------------------------------------------------------->lag and lead<----------------------------------------------------------------------------------
+write a sql query to give those students marks whose total marks greater than or equal to prev year marks 
+
+CREATE TABLE student(
+    student_name VARCHAR(50),
+    marks INT,
+    year INT
+);
+
+-- Insert some example values into the student table
+INSERT INTO student (student_name, marks, year) VALUES ('Rahul', 90, 2010);
+INSERT INTO student (student_name, marks, year) VALUES ('Sanjay', 80, 2010);
+INSERT INTO student (student_name, marks, year) VALUES ('Mohan', 70, 2010);
+INSERT INTO student (student_name, marks, year) VALUES ('Rahul', 90, 2011);
+INSERT INTO student (student_name, marks, year) VALUES ('Sanjay', 85, 2011);
+INSERT INTO student (student_name, marks, year) VALUES ('Mohan', 65, 2011);
+INSERT INTO student (student_name, marks, year) VALUES ('Rahul', 80, 2012);
+INSERT INTO student (student_name, marks, year) VALUES ('Sanjay', 80, 2012);
+INSERT INTO student (student_name, marks, year) VALUES ('Mohan', 90, 2012);
+
+with cte as(
+select *, lag(marks) over (partition by student_name order by year ) 
+pre_year_marks
+from student)
+select * from cte where marks>=pre_year_marks
