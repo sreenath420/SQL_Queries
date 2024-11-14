@@ -107,4 +107,34 @@ empid empname sal
 3	CC	100
 
 
+-------------------------------------------------->5<------------------------------------------------------------
 
+create table sales(month varchar(50), ytd_sales int, monthnum int)
+
+
+insert into sales values('jan',15,1),('feb',22,2),('mar',35,3),('apr',45,4),('may',60,5)
+
+
+month	ytd_sales	monthnum
+jan		15				1
+feb		22				2
+mar		35				3
+apr		45				4
+may		60				5
+
+with cte as
+(select *,
+lag(ytd_sales,1,0) over(order by monthnum) as sales_date
+from sales
+)
+select month,ytd_sales,(ytd_sales-sales_date) as perdic_sales
+from cte
+
+output
+
+month	    ytd_sales			perdic_sales
+jan		15				15
+feb		22				7
+mar		35				13
+apr		45				10
+may		60			    	15
