@@ -48,3 +48,29 @@ from stude_table)
 select sname,sum(marks) as tot_sum
 from cte where rnk<=2
 group by sname
+
+-------------------------------------------->3.Find maximum ID by excluding Duplicates Records<----------------------------------------------------
+
+
+Find maximum ID by excluding Duplicates Records
+create table empl (id int)
+
+insert into empl values (2),(5),(6),(6),(7),(8),(8);
+
+
+method:-1
+select max(id) from empl where id not in (
+select id from empl
+group by id
+having count(*)>1
+)
+
+method:-2
+with ctc as(
+select id from empl
+group by id
+having count(*)=1
+)
+
+select max(id) from ctc
+
