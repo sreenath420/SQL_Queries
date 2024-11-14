@@ -74,3 +74,37 @@ having count(*)=1
 
 select max(id) from ctc
 
+------------------------------------------------>4<-----------------------------------------------------------------
+
+create table tablea(empid int, empname varchar(50), salary int);
+create table tableb(empid int, empname varchar(50), salary int)
+
+insert into tablea values(1,'AA',1000),(2,'BB',300)
+insert into tableb values(2,'BB',400),(3,'CC',100)
+	with cte as(
+	select * from tablea 
+	 union 
+	select * from tableb 
+	)
+	select empid,empname,min(salary)  from cte 
+	group by empid,empname
+
+select * from tablea
+empid	empname	salary
+1		AA		1000
+2		BB		300
+
+select * from tableb
+empid	empname	salary
+2		BB		400
+3		CC		100
+
+
+output
+empid empname sal
+1	AA	1000
+2	BB	300
+3	CC	100
+
+
+
