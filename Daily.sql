@@ -138,3 +138,52 @@ feb		22				7
 mar		35				13
 apr		45				10
 may		60			    	15
+
+
+
+------------------------------------>6<----------------------------------------------
+
+create table happiness_tbl (ranking int, country varchar(50));
+
+insert into happiness_tbl values (1,'Finland'),(2,'Denmark'),(3,'Iceland'),
+(4,'Israel'),(5,'Netherlands'),(6,'Sweden'),(7,'Norway'),(8,'Switzerland'),
+(9,'Luxembourg'),(128,'Srilanka'),(126,'India')
+
+ranking	country
+1	Finland
+2	Denmark
+3	Iceland
+4	Israel
+5	Netherlands
+6	Sweden
+7	Norway
+8	Switzerland
+9	Luxembourg
+128	Srilanka
+126	India
+
+
+
+select country  
+from (
+select country, case 
+when country='India' then 1 
+when country='Srilanka'    then 2
+else 3 end as dervie_rank
+from happiness_tbl)  AS ranked_countries
+order by  dervie_rank 
+
+
+output
+country
+India
+Srilanka
+Finland
+Denmark
+Iceland
+Israel
+Netherlands
+Sweden
+Norway
+Switzerland
+Luxembourg
