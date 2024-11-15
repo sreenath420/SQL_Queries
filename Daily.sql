@@ -7,10 +7,10 @@ cnt val
 
 Output
 
-cnt val in_put
+cnt      val     in_put
 4	  R	  RRRR
 2	  S	  SS
-3	  Ra	RaRaRa
+3	  Ra	  RaRaRa
 
 
 create table in_put(cnt int,
