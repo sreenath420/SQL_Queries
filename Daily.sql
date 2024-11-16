@@ -79,15 +79,9 @@ select max(id) from ctc
 create table tablea(empid int, empname varchar(50), salary int);
 create table tableb(empid int, empname varchar(50), salary int)
 
+
 insert into tablea values(1,'AA',1000),(2,'BB',300)
 insert into tableb values(2,'BB',400),(3,'CC',100)
-	with cte as(
-	select * from tablea 
-	 union 
-	select * from tableb 
-	)
-	select empid,empname,min(salary)  from cte 
-	group by empid,empname
 
 select * from tablea
 empid	empname	salary
@@ -105,6 +99,15 @@ empid empname sal
 1	AA	1000
 2	BB	300
 3	CC	100
+	with cte as(
+	select * from tablea 
+	 union 
+	select * from tableb 
+	)
+	select empid,empname,min(salary)  from cte 
+	group by empid,empname
+
+
 
 
 -------------------------------------------------->5<------------------------------------------------------------
@@ -121,15 +124,6 @@ feb		22				2
 mar		35				3
 apr		45				4
 may		60				5
-
-with cte as
-(select *,
-lag(ytd_sales,1,0) over(order by monthnum) as sales_date
-from sales
-)
-select month,ytd_sales,(ytd_sales-sales_date) as perdic_sales
-from cte
-
 output
 
 month	    ytd_sales			perdic_sales
@@ -138,6 +132,18 @@ feb		22				7
 mar		35				13
 apr		45				10
 may		60			    	15
+
+
+	
+with cte as
+(select *,
+lag(ytd_sales,1,0) over(order by monthnum) as sales_date
+from sales
+)
+select month,ytd_sales,(ytd_sales-sales_date) as perdic_sales
+from cte
+
+
 
 
 
@@ -162,18 +168,6 @@ ranking	country
 128	Srilanka
 126	India
 
-
-
-select country  
-from (
-select country, case 
-when country='India' then 1 
-when country='Srilanka'    then 2
-else 3 end as dervie_rank
-from happiness_tbl)  AS ranked_countries
-order by  dervie_rank 
-
-
 output
 country
 India
@@ -187,3 +181,15 @@ Sweden
 Norway
 Switzerland
 Luxembourg
+
+select country  
+from (
+select country, case 
+when country='India' then 1 
+when country='Srilanka'    then 2
+else 3 end as dervie_rank
+from happiness_tbl)  AS ranked_countries
+order by  dervie_rank 
+
+
+
