@@ -1,1 +1,62 @@
+𝐐𝐮𝐞𝐬𝐭𝐢𝐨𝐧 : Determine the number of output rows when we join the below two table.
+𝐂𝐚𝐬𝐞 𝟏 : When we don't have nulls in the join key.
+𝐂𝐚𝐬𝐞 𝟐 : When we have the nulls in the join key.
+
+Create Statement : 
+================
+create table table1 (
+x1 int , 
+y1 char(1)
+);
+-- Without Null
+insert into table1(x1,y1) values(1,'a'),(1,'b'),(1,'c'),(2,'d');
+
+truncate table table1;
+
+-- With Null
+insert into table1(x1,y1) values(1,'a'),(1,'b'),(1,'c'),(null,'g'),(2,'d'),(null,'e');
+
+create table table2 (
+x1 int , 
+y1 char(1)
+);
+truncate table table2;
+-- Without Null
+insert into table2(x1,y1) values(1,'p'),(1,'q'),(1,'r'),(3,'s');
+-- With Null
+insert into table2(x1,y1) values(1,'p'),(1,'q'),(1,'r'),(3,'s'),(null,'t');
+
+select * 
+from table1;
+select * 
+from table2;
+
+
+------------------------------------>With Nulls Count<----------------------------------------------------
+-------------------->Inner Join<--------------------
+select count(*) from table1 
+inner join table2 on table1.x1 = table2.x1;
+
+output :-
+9 
+-------------->Left Join<-----------
+select count(*) from table1 
+left join table2 on table1.x1 = table2.x1;
+output:
+12 
+
+--------------->Right Join<------------------
+
+select count(*) from table1 
+right join table2 on table1.x1 = table2.x1;
+
+Output:
+11
+
+--------->Full Join<-----------------
+select count(*) from table1 
+full outer join table2 on table1.x1 = table2.x1;
+
+Output:
+14
 
