@@ -60,3 +60,4 @@ full outer join table2 on table1.x1 = table2.x1;
 Output:
 14
 
+
