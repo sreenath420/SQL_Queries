@@ -1,1 +1,28 @@
+The SQL commands DELETE,TRUNCATE and DROP are used for removing data or database objects,but they different singnifcantly in their scope
+1. DELETE:
+Purpose: Removes specific rows from a table based on a WHERE clause. If no WHERE clause is specified, all rows are deleted.
+Type: Data Manipulation Language (DML) command.
+Rollback: Changes made by DELETE can be rolled back if the transaction is not committed.
+Structure: Preserves the table structure, indexes, and constraints.
+Performance: Generally slower than TRUNCATE for deleting all rows, as it logs each deleted row individually.
+Syntax:
+    DELETE FROM table_name WHERE condition;
 
+2. TRUNCATE:
+Purpose: Removes all rows from a table, effectively emptying it.
+Type: Data Definition Language (DDL) command.
+Rollback: Changes made by TRUNCATE cannot be rolled back.
+Structure: Preserves the table structure, but resets identity columns (like auto-incrementing IDs) to their seed value.
+Performance: Faster than DELETE for removing all rows because it deallocates the data pages used by the table, rather than logging individual row deletions.
+Syntax:
+    TRUNCATE TABLE table_name;
+
+3. DROP:
+Purpose: Removes an entire database object, such as a table, index, or database.
+Type: Data Definition Language (DDL) command.
+Rollback: Changes made by DROP cannot be rolled back.
+Structure: Removes the entire object, including its structure, data, indexes, constraints, and triggers.
+Performance: Generally fast, as it simply removes the object definition and associated data structures.
+Syntax:
+    DROP TABLE table_name;
+    DROP DATABASE database_name;
