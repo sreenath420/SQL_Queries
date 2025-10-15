@@ -1,4 +1,4 @@
---------------------------------->Employemees who earn more than their managers in sql<--------------------------------------------
+--------------------------------->Employemees who earn more than their managers in sql<---------------------------------------------
 
 
 use creative
