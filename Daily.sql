@@ -243,3 +243,11 @@ from marketing_campaign
 group by product_id
 order by total_sum
 
+
+--------------------------------------->8<---------------------------------------------------
+Find the second highest salary from the Employee table
+
+select max(salary)
+from employees
+where salary <
+(select max(salary) from employees)
