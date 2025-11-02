@@ -7,10 +7,10 @@ cnt val
 
 Output
 
-cnt      val     in_put
-4	  R	  RRRR
-2	  S	  SS
-3	  Ra	  RaRaRa
+cnt     val     in_put
+4	    R	     RRRR
+2	    S	      SS
+3	    Ra	     RaRaRa
 
 
 create table in_put(cnt int,
@@ -251,3 +251,11 @@ select max(salary)
 from employees
 where salary <
 (select max(salary) from employees)
+
+-------------------------------------->9<---------------------------------------
+Find duplicate records in a table
+
+SELECT name, 
+COUNT(*) 
+FROM employees GROUP BY name
+HAVING COUNT(*) > 1
