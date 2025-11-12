@@ -1034,4 +1034,38 @@ sum(case when page_visited='payment' then 1 else 0  end) pay_ct
 from PageVisits
 group by visit_date
 
+---------------------------->33.Write a SQL query to find employees with salaries greater than the department average<---------------------
+
+REATE TABLE employees (
+  employee_name STRING,
+  emp_salary DOUBLE,
+  department_id INT,
+  department_name STRING
+);
+
+INSERT INTO employees (employee_name, emp_salary, department_id, department_name) VALUES
+  ('Alice Smith', 75000, 1, 'Finance'),
+  ('Bob Johnson', 82000, 2, 'Marketing'),
+  ('Carol Lee', 91000, 1, 'Finance'),
+  ('David Kim', 67000, 3, 'IT'),
+  ('Eva Brown', 99000, 2, 'Marketing'),
+  ('Frank White', 72000, 3, 'IT'),
+  ('Grace Green', 88000, 4, 'HR'),
+  ('Henry Black', 94000, 4, 'HR'),
+  ('Ivy Adams', 81000, 1, 'Finance'),
+  ('Jack Turner', 86000, 2, 'Marketing');
+
+Query
+
+select e.*
+from employees e
+join
+(
+  select department_id,avg(emp_salary) as avg_salary 
+  from employees
+  group by department_id
+) d
+ on e.department_id= d.department_id
+where e.emp_salary>d.avg_salary;
  
+
